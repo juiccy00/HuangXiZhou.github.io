@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!--
+        © Material Theme 
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.2.5
+    -->
+    
+    <!-- Title -->
+    
+    <title>
+        IndexedDB--HTML5本地存储 | Hexo
+    </title>
+    
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+    
+    <!-- Meta & INfo -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Trevor">
+    <meta name="description" content="一枚前端狗的自我修养">
+    <meta name="keywords" content="null">
+    
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+    
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Hexo">
+    
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://huangxizhou.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="IndexedDB--HTML5本地存储 | Hexo">
+    <meta property="og:description" content="一枚前端狗的自我修养">
+    
+     <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+        
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+    
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+	body, html{
+		font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+	}
+	
+    a{
+        color: #00838F
+    }
+    
+    .mdl-card__media,
+    #search-label,
+    #search-form-label:after,
+    #scheme-Paradox .hot_tags-count,
+    #scheme-Paradox .sidebar_archives-count,
+    #scheme-Paradox .sidebar-colored .sidebar-header,
+    #scheme-Paradox .sidebar-colored .sidebar-badge{
+        background-color: #0097A7 !important
+    }
+    
+	/* Sidebar User Drop Down Menu Text Color */
+	#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus{
+        color: #0097A7 !important
+    }
+    
+    #post_entry-right-info,
+    .sidebar-colored .sidebar-nav li:hover > a,
+    .sidebar-colored .sidebar-nav li:hover > a i,
+    .sidebar-colored .sidebar-nav li > a:hover,
+    .sidebar-colored .sidebar-nav li > a:hover i,
+    .sidebar-colored .sidebar-nav li > a:focus i,
+    .sidebar-colored .sidebar-nav > .open > a,
+    .sidebar-colored .sidebar-nav > .open > a:hover,
+    .sidebar-colored .sidebar-nav > .open > a:focus,
+    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a{
+        color: #0097A7 !important
+    }
+    
+    .toTop{
+        background: #757575 !important
+    }
+		
+	.material-layout .material-post>.material-nav,
+	.material-layout .material-index>.material-nav,
+	.material-nav a{
+		color: #757575;
+	}
+		
+	#scheme-Paradox .MD-burger-layer {
+		background-color: #757575;
+	}
+
+	#scheme-Paradox #post-toc-trigger-btn{
+		color: #757575;
+	}
+	
+	.post-toc a:hover{
+		color: #00838F;
+		text-decoration: underline;
+	}
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+        body{
+            background-color: #F5F5F5
+        }
+		
+		/* blog_info bottom background */
+        #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+            background-color: #fff;
+        }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+        .fade {
+            transition: all 800ms linear;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+
+        .fade.out{
+            opacity: 0;
+        }
+    </style>
+
+	<script src="/js/jquery.min.js"></script>
+	
+	<link rel="stylesheet" href="/css/highlight/solarized-white.css">
+	
+	<!-- UC Browser Compatible-->
+	<script>
+		var agent = navigator.userAgent.toLowerCase();
+		if(agent.indexOf('ucbrowser')>0) {
+			document.write('<link rel="stylesheet" href="/css/uc.css">');
+		   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+		}
+	</script>
+    
+    <!-- Custom Head -->
+    
+</head>
+	
+	
+
+    <body id="scheme-Paradox">
+
+		
+        <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+				
+			
+			
+            <!-- Main Container -->
+            <main class="material-layout__content" id="main">
+				
+                <!-- Top Anchor -->
+                <div id="top"></div>
+				
+				
+                <!-- Hamburger Button -->
+                <button class="MD-burger-icon sidebar-toggle">
+                    <span class="MD-burger-layer"></span>
+                </button>
+				
+				
+                <!-- Post TOC -->
+
+    
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是IndexedDB"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是IndexedDB</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#为什么要用IndexedDB"><span class="post-toc-number">2.</span> <span class="post-toc-text">为什么要用IndexedDB</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#IndexedDB的特点"><span class="post-toc-number">3.</span> <span class="post-toc-text">IndexedDB的特点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#IndexedDB常用功能代码演示"><span class="post-toc-number">4.</span> <span class="post-toc-text">IndexedDB常用功能代码演示</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DEMO演示"><span class="post-toc-number">5.</span> <span class="post-toc-text">DEMO演示</span></a></li></ol>
+		
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+	<!-- Paradox Post Header -->
+	
+		
+			<!-- Random Thumbnail -->
+			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+				<script>
+    
+    var randomNum;
+    randomNum = Math.floor(Math.random() * 19 + 1);
+    
+    $(".post_thumbnail-random").css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
+    
+</script>
+
+		
+	
+        <p class="article-headline-p">
+            IndexedDB--HTML5本地存储
+        </p>
+    </div>
+
+	
+
+				
+				
+					<!-- Paradox Post Info -->
+					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Trevor</strong>
+        <span>1月 03, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+<!--
+    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+        <i class="material-icons" role="presentation">favorite</i>
+        <span class="visuallyhidden">favorites</span>
+    </button>
+-->
+
+    <!-- Qrcode -->
+    
+
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=IndexedDB--HTML5本地存储&url=http://huangxizhou.github.io//2017/01/03/indexedDB/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <li class="mdl-menu__item">
+            分享到微博
+        </li>
+    </a>
+    
+
+    <!-- Share Twitter -->
+    
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=IndexedDB--HTML5本地存储&url=http://huangxizhou.github.io//2017/01/03/indexedDB/index.html&via=Trevor" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Twitter
+        </li>
+    </a>
+    
+
+    <!-- Share Facebook -->
+    
+    <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://huangxizhou.github.io//2017/01/03/indexedDB/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Facebook
+        </li>
+    </a>
+    
+
+    <!-- Share Google+ -->
+    
+    <a class="post_share-link" href="https://plus.google.com/share?url=http://huangxizhou.github.io//2017/01/03/indexedDB/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Google+
+        </li>
+    </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+    <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Hexo&title=IndexedDB--HTML5本地存储&summary=一枚前端狗的自我修养&pics=http://huangxizhou.github.io/img/favicon.png&url=http://huangxizhou.github.io/2017/01/03/indexedDB/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 QQ
+        </li>
+    </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+				
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<h2 id="什么是IndexedDB"><a href="#什么是IndexedDB" class="headerlink" title="什么是IndexedDB"></a><strong>什么是IndexedDB</strong></h2><p>indexedDB是一种轻量级NOSQL数据库，是由浏览器自带。相比Web Sql更加高效，包括索引、事务处理和查询功能。在HTML5本地存储中，IndexedDB存储的数据是最多的，不像webStorage的4M，IndexedDB存储空间是无上限且永久的。</p>
+<h2 id="为什么要用IndexedDB"><a href="#为什么要用IndexedDB" class="headerlink" title="为什么要用IndexedDB"></a><strong>为什么要用IndexedDB</strong></h2><p>因为咱们的大佬W3C不喜欢Web Sql(Sqlite)啊233，大佬都已经放弃了Web Sql，力推IndexedDB<br>Web Sql API的主要实现者是Chrome、Safari、Opera、Android、IOS、BB。IE和FF都不支持Web Sql API。<br>IndexedDB由于受到W3C的推崇。浏览器厂商的实现情况要好一些。<br><strong><em>注：反正IndexedDB跟Web Sql都是半斤八两</em></strong></p>
+<h2 id="IndexedDB的特点"><a href="#IndexedDB的特点" class="headerlink" title="IndexedDB的特点"></a><strong>IndexedDB的特点</strong></h2><ol>
+<li>支持事务、游标、索引等数据库操作</li>
+<li>存储空间大</li>
+<li>永久存储，删除缓存不干扰IndexedDB</li>
+<li>异步性</li>
+</ol>
+<p><strong>各大浏览器对IndexedDB的支持情况：</strong></p>
+<ul>
+<li>IE10+(亲测IE10跪=.=)</li>
+<li>Firefox 10+、Chrome 23+、Opera 15+</li>
+<li>iPhone ios8-ios10 safari支持(X5内核不支持)</li>
+<li>Android X5内核支持</li>
+</ul>
+<p><strong><em>注：移动端各种坑，在没什么把握之前千万别像我一样作死去弄移动端</em></strong></p>
+<h2 id="IndexedDB常用功能代码演示"><a href="#IndexedDB常用功能代码演示" class="headerlink" title="IndexedDB常用功能代码演示"></a><strong>IndexedDB常用功能代码演示</strong></h2><p>由于我是做了一个小Demo，所以暂且用这个Demo的代码，伪代码大家看看就好，后面会附上完整源码地址233</p>
+<ul>
+<li><strong>创建数据库</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function createdatabase() &#123;</div><div class="line">    var resource = window.indexedDB.open(&quot;managerDB&quot;,1);//创建一个名为managerDB的数据库，数量为1</div><div class="line">    resource.onsuccess = function(event) &#123;</div><div class="line">        database = resource.result;//让数据库能在任何地方访问</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    resource.onerror = function(event) &#123;//数据库创建失败事件</div><div class="line">        alert(&quot;can&apos;t create database,error:&quot; + resource.error);</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    resource.onupgradeneeded = function(event) &#123;//第一次创建数据库新建一张名为managerList的数据表</div><div class="line">        var db = resource.result;</div><div class="line">        var objectStore = db.createObjectStore(&quot;managerList&quot;,&#123;keyPath:&quot;time&quot;&#125;);//key为time</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>onupgradeneeded事件会在数据库版本不同时触发（event.oldVersion 可以获取当前数据库版本），可以用来升级数据库(添加删除数据表),此事件也会在所请求的数据库不存在的时候触发，会自动创建一个空数据库。</p>
+<ul>
+<li><strong>存储数据</strong></li>
+</ul>
+<p>如果调用put()添加的数据与已存在的数据有相同的key，浏览器会将新数据替换已存在的数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">function save() &#123;</div><div class="line">    var contact = new Object();//新建一个对象</div><div class="line">    var Name = document.getElementById(&quot;name&quot;).value;</div><div class="line">    var Time = getSelect();</div><div class="line">    var Description = document.getElementById(&quot;description&quot;).value;</div><div class="line">    if(JTrim(Name) != &quot;&quot; &amp;&amp; JTrim(Description) != &quot;&quot;) &#123;//JTrim()函数是用于判断输入是否为空值</div><div class="line">        contact.name = Name;</div><div class="line">        contact.time = Time;</div><div class="line">        contact.description = Description;</div><div class="line">        var transaction = database.transaction([&quot;managerList&quot;],&quot;readwrite&quot;);//读写</div><div class="line">        var resource = transaction.objectStore(&quot;managerList&quot;).put(contact);//利用put()将数据存入</div><div class="line"></div><div class="line">    &#125; else &#123;</div><div class="line">        alert(&quot;you should write something...&quot;);</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    resource.onsuccess = function(event) &#123;//成功</div><div class="line">        alert(&quot;create note success!&quot;);</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    resource.onerror = function(event) &#123;//失败</div><div class="line">       alert(&quot;can&apos;t create database,error:&quot; + resource.error);//告知错误</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>JTrim()函数</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function JTrim(s) &#123;</div><div class="line">    return s.replace(/(^\s*)|(\s*$)/g, &quot;&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li><strong>遍历全部数据</strong></li>
+</ul>
+<p>利用IndexedDB的API来遍历数据的时候，需要用到游标，熟悉数据库的各位应该清楚游标的用法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">function loadAll() &#123;</div><div class="line">    var transaction = database.transaction([&quot;managerList&quot;],&quot;readonly&quot;);</div><div class="line">    var resource = transaction.objectStore(&quot;managerList&quot;).openCursor();</div><div class="line">    var str = &quot;&quot;;</div><div class="line">    var result = document.getElementById(&quot;container-2&quot;);</div><div class="line">    resource.onsuccess = function(event) &#123;</div><div class="line">        //创建游标</div><div class="line">        var cursor = event.target.result;</div><div class="line">        //利用游标对数据进行遍历</div><div class="line">        if(cursor) &#123;</div><div class="line">            var list = cursor.value;</div><div class="line">            var str += list.time;</div><div class="line">            cursor.continue();//继续循环</div><div class="line">        &#125; else &#123;//游标循环到底之后，打印出str</div><div class="line">            alert(str);//在这里我们就能得出list.time的值了  </div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    resource.onerror = function(event) &#123;//出现错误给出提示</div><div class="line">        alert(&quot;can&apos;t create database,error:&quot; + resource.error);</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>查询单条数据</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function search(element) &#123;</div><div class="line">    var description = element.getAttribute(&quot;value&quot;);</div><div class="line">    var transaction = database.transaction([&quot;managerList&quot;], &quot;readonly&quot;);//只读</div><div class="line">    var objectStore = transaction.objectStore(&quot;managerList&quot;);</div><div class="line">    var request = objectStore.get(description);//利用get()方法找到这条数据</div><div class="line">    request.onerror = function(event) &#123;</div><div class="line">        alert(&quot;error:：&quot; + request.error);</div><div class="line">    &#125;;</div><div class="line">    request.onsuccess = function(event) &#123;</div><div class="line">    var b = request.result;</div><div class="line">    alert(b.description);//最终得到这条数据的description部分</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>删除数据</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">function del() &#123;</div><div class="line">    var resource = document.getElementById(&quot;container-2&quot;);</div><div class="line">    var b = resource.getElementsByTagName(&quot;input&quot;);</div><div class="line">    var div = document.getElementById(&quot;container-2&quot;);</div><div class="line">    var result = 0;</div><div class="line">    for(var i = 0;i &lt; b.length;i ++) &#123;</div><div class="line">        if(b[i].checked == true) &#123;</div><div class="line">            var time = b[i].value;</div><div class="line">            var transaction = database.transaction([&quot;managerList&quot;], &quot;readwrite&quot;);//读写</div><div class="line">            var objectStore = transaction.objectStore(&quot;managerList&quot;);</div><div class="line">            var request = objectStore.delete(time);//删除数据的核心就是利用delete方法</div><div class="line">            request.onerror = function (event) &#123;</div><div class="line">                alert(&quot;error：&quot; + request.error);</div><div class="line">            &#125;;</div><div class="line"> </div><div class="line">            request.onsuccess = function (event) &#123;</div><div class="line">                alert(&quot;delete note success!&quot;);</div><div class="line">            &#125;;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>删除整个数据库</strong></li>
+</ul>
+<p>IndexDB只能在控制台里面删除数据，并不能删除数据表及数据库，所以删除只能代码执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">window.indexedDB.deleteDatabase(&quot;数据库名称&quot;);</div></pre></td></tr></table></figure></p>
+<h2 id="DEMO演示"><a href="#DEMO演示" class="headerlink" title="DEMO演示"></a><strong>DEMO演示</strong></h2><p><strong><a href="http://huangxizhou.oschina.io/indexdb" target="_blank" rel="external">Demo地址</a></strong>(出现bug请移步pc)<br><img src="http://thumbnail0.baidupcs.com/thumbnail/799b76e4f7d35cc4ce70111d68b5088d?fid=3745118495-250528-651612551847972&amp;time=1483858800&amp;rt=sh&amp;sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-FhdQYROh2FQ5AXGp8gFg0MEOU14%3D&amp;expires=8h&amp;chkv=0&amp;chkbd=0&amp;chkpc=&amp;dp-logid=177744129250372404&amp;dp-callid=0&amp;size=c1920_u1080&amp;quality=90" alt="图片描述"></p>
+<p><img src="http://thumbnail0.baidupcs.com/thumbnail/399cb29186f63a1bc905cdc5573ed119?fid=3745118495-250528-36472382377563&amp;time=1483858800&amp;rt=sh&amp;sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-p1H%2BSJVFhwuCTa6t2gUHkyRLgf8%3D&amp;expires=8h&amp;chkv=0&amp;chkbd=0&amp;chkpc=&amp;dp-logid=177727398788435143&amp;dp-callid=0&amp;size=c1920_u1080&amp;quality=90" alt="图片描述"></p>
+<p><strong><em>pc端偶尔会因为代码仓库的原因出现莫名bug，方便的话可以clone源码</em></strong><br><strong><em>地址在这里：git@git.oschina.net:huangxizhou/indexDB.git</em></strong></p>
+<p><strong><code>最后祝大家新年快乐！！！</code></strong></p>
+
+	
+	
+	
+	
+</div>
+				
+				
+
+                <!-- Post Comments -->
+                
+                    
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/12/28/aboutWebStorage/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+        </div>
+    </div>
+
+				
+				
+					<!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay "></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored  sidebar-fixed-left" role="navigation">
+	<div id="sidebar-main">
+	    <!-- Sidebar Header -->
+		<div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Trevor's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        xizhouh@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+		<!-- Sidebar Navigation  -->
+		<ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+			
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+						<i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    <li id="sidebar-first-li">
+        <a href="/" target="_self">
+            <i class="material-icons sidebar-material-icons">home</i>
+             主页
+        </a>
+    </li>
+
+    <!-- I'm Feeling Lucky -->
+<!--
+    <li class="dropdown">
+        <a href="" target="_self">
+            <i class="material-icons sidebar-material-icons">explore</i>
+             sidebar.imlucky
+        </a>
+    </li>
+-->
+
+
+    <!-- Archives  -->
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">inbox</i>
+             归档
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">1</span></a>
+        </ul>
+    </li>
+
+    <!-- Categories  -->
+    
+
+    <!-- Divider -->
+    <li class="divider"></li>
+
+
+    <!-- Pages  -->
+	
+		<li>
+			<a href="/about" title="关于我">
+				关于我
+			</a>
+		</li>
+	
+
+    <!-- Article Numebr  -->
+    <li>
+        <a href="/archives">
+             文章总数
+             <span class="sidebar-badge">2</span>
+        </a>
+    </li>
+</ul>
+
+
+		<!-- Sidebar Divider -->
+		<div class="sidebar-divider"></div>
+
+		<!-- Sidebar Footer -->
+		<!-- 
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :) 
+-->
+
+<!-- Theme Material -->
+<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+	<div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		主题 - Material
+		<span class="sidebar-badge badge-circle">i</span>
+	</div>
+</a>
+
+<!-- Help & Support -->
+<!--
+<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		sidebar.help
+		<span class="mdl-button__ripple-container">
+			<span class="mdl-ripple"></span>
+		</span>
+	</div>
+</a>
+-->
+
+<!-- Feedback -->
+<!--
+<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.feedback
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>
+-->
+
+<!-- Abount Theme -->
+<!--
+<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.about_theme
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>-->
+
+	</div>
+    
+    <!-- Sidebar Sponsor -->
+    
+
+
+</aside>
+
+				
+				
+				
+					<!-- Footer Top Button -->
+					<div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+				
+				
+				<!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+	
+	
+		<!-- Paradox Footer Left Section -->
+		<div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+    <a href="https://twitter.com/twitter" target="_blank"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.png);">
+        <span class="visuallyhidden">Twitter</span>
+    </button></a>
+    
+
+    <!-- Facebook -->
+    
+    <a href="https://www.facebook.com/facebook" target="_blank"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-facebook.png);">
+        <span class="visuallyhidden">Facebook</span>
+    </button></a>
+    
+
+    <!-- Google + -->
+    
+    <a href="https://www.google.com/" target="_blank"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.png);">
+        <span class="visuallyhidden">Google Plus</span>
+    </button></a>
+    
+
+    <!-- Weibo -->
+    
+    
+
+    <!-- Instagram -->
+    
+    
+
+    <!-- Tumblr -->
+    
+    
+
+    <!-- Github -->
+    
+    
+
+    <!-- LinkedIn -->
+    
+    
+
+    <!-- Zhihu -->
+    
+    
+</div>
+
+
+		<!--Copyright-->
+		<div id="copyright">Copyright&nbsp;©&nbsp;<script type="text/javascript">var fd = new Date();document.write(fd.getFullYear());</script>&nbsp;Hexo</div>
+
+		<!-- Paradox Footer Right Section -->
+
+		<!-- 
+		I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+		It will not impact the appearance and can give developers a lot of support :)
+
+		很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+		它不会影响美观并可以给开发者很大的支持。 :) 
+		-->
+
+		<div class="mdl-mini-footer--right-section">
+			<div>
+				<div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+				<div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+			</div>
+		</div>
+	
+    
+</footer>
+                
+				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
+<script src="/js/js.min.js"></script>
+<script src="/js/nprogress.js"></script>
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    
+    $('#nprogress .bar').css({
+        'background': '#FF4081'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #FF4081, 0 0 15px #FF4081'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#FF4081',
+        'border-left-color': '#FF4081'
+    });
+    
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Swiftye -->
+
+
+<!-- Local Search-->
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
+    });
+</script>
+
+<!-- MathJax Load-->
+
+            </main>
+        </div>
+		
+    </body>
+		
+	
+</html>

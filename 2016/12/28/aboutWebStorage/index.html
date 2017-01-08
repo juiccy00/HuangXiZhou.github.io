@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!--
+        © Material Theme 
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.2.5
+    -->
+    
+    <!-- Title -->
+    
+    <title>
+        Web Storage--HTML5本地存储 | Hexo
+    </title>
+    
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+    
+    <!-- Meta & INfo -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Trevor">
+    <meta name="description" content="一枚前端狗的自我修养">
+    <meta name="keywords" content="null">
+    
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+    
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Hexo">
+    
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://huangxizhou.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Web Storage--HTML5本地存储 | Hexo">
+    <meta property="og:description" content="一枚前端狗的自我修养">
+    
+     <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+        
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+    
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+	body, html{
+		font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+	}
+	
+    a{
+        color: #00838F
+    }
+    
+    .mdl-card__media,
+    #search-label,
+    #search-form-label:after,
+    #scheme-Paradox .hot_tags-count,
+    #scheme-Paradox .sidebar_archives-count,
+    #scheme-Paradox .sidebar-colored .sidebar-header,
+    #scheme-Paradox .sidebar-colored .sidebar-badge{
+        background-color: #0097A7 !important
+    }
+    
+	/* Sidebar User Drop Down Menu Text Color */
+	#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus{
+        color: #0097A7 !important
+    }
+    
+    #post_entry-right-info,
+    .sidebar-colored .sidebar-nav li:hover > a,
+    .sidebar-colored .sidebar-nav li:hover > a i,
+    .sidebar-colored .sidebar-nav li > a:hover,
+    .sidebar-colored .sidebar-nav li > a:hover i,
+    .sidebar-colored .sidebar-nav li > a:focus i,
+    .sidebar-colored .sidebar-nav > .open > a,
+    .sidebar-colored .sidebar-nav > .open > a:hover,
+    .sidebar-colored .sidebar-nav > .open > a:focus,
+    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a{
+        color: #0097A7 !important
+    }
+    
+    .toTop{
+        background: #757575 !important
+    }
+		
+	.material-layout .material-post>.material-nav,
+	.material-layout .material-index>.material-nav,
+	.material-nav a{
+		color: #757575;
+	}
+		
+	#scheme-Paradox .MD-burger-layer {
+		background-color: #757575;
+	}
+
+	#scheme-Paradox #post-toc-trigger-btn{
+		color: #757575;
+	}
+	
+	.post-toc a:hover{
+		color: #00838F;
+		text-decoration: underline;
+	}
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+        body{
+            background-color: #F5F5F5
+        }
+		
+		/* blog_info bottom background */
+        #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+            background-color: #fff;
+        }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+        .fade {
+            transition: all 800ms linear;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+
+        .fade.out{
+            opacity: 0;
+        }
+    </style>
+
+	<script src="/js/jquery.min.js"></script>
+	
+	<link rel="stylesheet" href="/css/highlight/solarized-white.css">
+	
+	<!-- UC Browser Compatible-->
+	<script>
+		var agent = navigator.userAgent.toLowerCase();
+		if(agent.indexOf('ucbrowser')>0) {
+			document.write('<link rel="stylesheet" href="/css/uc.css">');
+		   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+		}
+	</script>
+    
+    <!-- Custom Head -->
+    
+</head>
+	
+	
+
+    <body id="scheme-Paradox">
+
+		
+        <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+				
+			
+			
+            <!-- Main Container -->
+            <main class="material-layout__content" id="main">
+				
+                <!-- Top Anchor -->
+                <div id="top"></div>
+				
+				
+                <!-- Hamburger Button -->
+                <button class="MD-burger-icon sidebar-toggle">
+                    <span class="MD-burger-layer"></span>
+                </button>
+				
+				
+                <!-- Post TOC -->
+
+    
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是Web-Storage"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是Web Storage</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Web-Storage的使用方法"><span class="post-toc-number">2.</span> <span class="post-toc-text">Web Storage的使用方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a></li></ol>
+		
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+	<!-- Paradox Post Header -->
+	
+		
+			<!-- Random Thumbnail -->
+			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+				<script>
+    
+    var randomNum;
+    randomNum = Math.floor(Math.random() * 19 + 1);
+    
+    $(".post_thumbnail-random").css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
+    
+</script>
+
+		
+	
+        <p class="article-headline-p">
+            Web Storage--HTML5本地存储
+        </p>
+    </div>
+
+	
+
+				
+				
+					<!-- Paradox Post Info -->
+					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Trevor</strong>
+        <span>12月 28, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+<!--
+    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+        <i class="material-icons" role="presentation">favorite</i>
+        <span class="visuallyhidden">favorites</span>
+    </button>
+-->
+
+    <!-- Qrcode -->
+    
+
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Web Storage--HTML5本地存储&url=http://huangxizhou.github.io//2016/12/28/aboutWebStorage/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <li class="mdl-menu__item">
+            分享到微博
+        </li>
+    </a>
+    
+
+    <!-- Share Twitter -->
+    
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Web Storage--HTML5本地存储&url=http://huangxizhou.github.io//2016/12/28/aboutWebStorage/index.html&via=Trevor" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Twitter
+        </li>
+    </a>
+    
+
+    <!-- Share Facebook -->
+    
+    <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://huangxizhou.github.io//2016/12/28/aboutWebStorage/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Facebook
+        </li>
+    </a>
+    
+
+    <!-- Share Google+ -->
+    
+    <a class="post_share-link" href="https://plus.google.com/share?url=http://huangxizhou.github.io//2016/12/28/aboutWebStorage/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Google+
+        </li>
+    </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+    <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Hexo&title=Web Storage--HTML5本地存储&summary=一枚前端狗的自我修养&pics=http://huangxizhou.github.io/img/favicon.png&url=http://huangxizhou.github.io/2016/12/28/aboutWebStorage/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 QQ
+        </li>
+    </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+				
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<h2 id="什么是Web-Storage"><a href="#什么是Web-Storage" class="headerlink" title="什么是Web Storage"></a><strong>什么是Web Storage</strong></h2><p>Web Storage是HTML5里面引入的一个类似于cookie的本地存储功能，可以用于客户端的本地存储，其相对于cookie来说有以下几点优势：</p>
+<ol>
+<li><strong>存储空间大</strong>：cookie只有4KB的存储空间，而Web Storage在官方建议中为每个网站5M。</li>
+<li><strong>可选择性强</strong>：Web Storage分为两种：<code>sessionStorage</code>和<code>localStorage</code><h2 id="Web-Storage的使用方法"><a href="#Web-Storage的使用方法" class="headerlink" title="Web Storage的使用方法"></a><strong>Web Storage的使用方法</strong></h2>在使用上，<code>session Storage</code>和<code>local Storage</code>大同小异，只是<code>session Storage</code>是将数据临时存储在session中，浏览器关闭，数据随之消失。而<code>local Storage</code>则是将数据存储在本地，理论上来说数据永远不会消失，除非人为删除。</li>
+</ol>
+<p>API：</p>
+<ul>
+<li>保存数据    <code>localStorage.setItem( key, value );</code>    <code>sessionStorage.setItem( key, value );</code></li>
+<li>读取数据    <code>localStorage.getItem( key );</code>    <code>sessionStorage.getItem( key );</code></li>
+<li>删除单个数据<code>localStorage.removeItem( key );</code>    <code>sessionStorage.removeItem( key );</code></li>
+<li>删除全部数据<code>localStorage.clear( );</code>    <code>sessionStorage.clear( );</code></li>
+<li>获取索引的key<code>localStorage.key( index );</code>    <code>sessionStorage.key( index );</code></li>
+</ul>
+<p><strong><em>注意：Web Storage的API只能操作字符串</em></strong></p>
+<hr>
+<p>在使用Web Storage之前，我们需要注意以下几点：</p>
+<ol>
+<li>仅支持支持IE8及以上版本</li>
+<li>由于只能对字符串类型数据进行操作，所以对一些JSON对象需要进行转换</li>
+<li>因为是明文存储，所以毫无隐私性可言，绝对不能用于存储重要信息</li>
+<li>会是浏览器加载速度在一定程度上变慢</li>
+<li>无法被爬虫程序爬取</li>
+<li><p>使用Web Storage之前，请加上以下代码，对浏览器对Web Storage的支持性进行判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">if(window.localStorage)&#123;//或者window.sessionStorage     </div><div class="line">    alert(&quot;浏览器支持localStorage&quot;)</div><div class="line">    //主逻辑业务</div><div class="line">&#125;else&#123;      </div><div class="line">    alert(&quot;浏览不支持localStorage&quot;)</div><div class="line">    //替代方法</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>我们来写一个学生管理小程序用于演示Web Storage的基本用法</strong></p>
+</li>
+</ol>
+<p>简单的html页面先准备好<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">&lt;div style=&quot;border: 2px dashed #ccc;width:320px;float: left;&quot;&gt;     </div><div class="line">    &lt;label for=&quot;name&quot;&gt;学生姓名:&lt;/label&gt;  </div><div class="line">    &lt;input type=&quot;text&quot; id=&quot;name&quot; name=&quot;name&quot;/&gt;  </div><div class="line">    &lt;br/&gt;</div><div class="line">    &lt;label for=&quot;sex&quot;&gt;性别:&lt;/label&gt;  </div><div class="line">    &lt;input type=&quot;text&quot; id=&quot;sex&quot; name=&quot;sex&quot;/&gt;  </div><div class="line">    &lt;br/&gt;</div><div class="line">    &lt;label for=&quot;num&quot;&gt;学号:&lt;/label&gt;  </div><div class="line">    &lt;input type=&quot;text&quot; id=&quot;num&quot; name=&quot;num&quot;/&gt;  </div><div class="line">    &lt;br/&gt;</div><div class="line">    &lt;label for=&quot;add&quot;&gt;家庭住址:&lt;/label&gt;  </div><div class="line">    &lt;input type=&quot;text&quot; id=&quot;add&quot; name=&quot;add&quot;/&gt;  </div><div class="line">    &lt;br/&gt;</div><div class="line">    &lt;label for=&quot;tel&quot;&gt;电话号码:&lt;/label&gt;  </div><div class="line">    &lt;input type=&quot;text&quot; id=&quot;tel&quot; name=&quot;tel&quot;/&gt;  </div><div class="line">    &lt;br/&gt;  </div><div class="line">    &lt;input type=&quot;button&quot; onclick=&quot;save()&quot; value=&quot;提交信息&quot;/&gt;</div><div class="line">    &lt;hr/&gt;</div><div class="line">    &lt;input type=&quot;button&quot; onclick=&quot;loadAll()&quot; value=&quot;查看所有&quot;/&gt;</div><div class="line">    &lt;hr/&gt;</div><div class="line">    &lt;label for=&quot;search_name&quot;&gt;输入姓名：&lt;/label&gt;    </div><div class="line">    &lt;input type=&quot;text&quot; id=&quot;search_name&quot; name=&quot;search_name&quot;/&gt;</div><div class="line">    &lt;br/&gt; </div><div class="line">    &lt;input type=&quot;button&quot; onclick=&quot;search()&quot; value=&quot;查询&quot;/&gt;</div><div class="line">    &lt;hr/&gt;</div><div class="line">    &lt;label for=&quot;del_name&quot;&gt;输入姓名：&lt;/label&gt;    </div><div class="line">    &lt;input type=&quot;text&quot; id=&quot;del_name&quot; name=&quot;del_name&quot;/&gt;</div><div class="line">    &lt;br/&gt; </div><div class="line">    &lt;input type=&quot;button&quot; onclick=&quot;del()&quot; value=&quot;删除&quot;/&gt;</div><div class="line">    &lt;hr/&gt;</div><div class="line">&lt;/div&gt;  </div><div class="line">&lt;br/&gt;  </div><div class="line">&lt;div id=&quot;list&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div id=&quot;tato&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>在这个程序里面我们将实现增删查的基本功能，修改数据的功能相信大家看完后自己就能写出来。</p>
+<p><strong>接下来开始写方法：</strong></p>
+<p><strong>存储</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">//利用localStorage存储数据</div><div class="line">function save() &#123;</div><div class="line">    var contact = new Object();</div><div class="line">    var Name = document.getElementById(&quot;name&quot;).value;</div><div class="line">    var Sex = document.getElementById(&quot;sex&quot;).value;</div><div class="line">    var Num = document.getElementById(&quot;num&quot;).value;</div><div class="line">    var Add = document.getElementById(&quot;add&quot;).value;</div><div class="line">    var Tel = document.getElementById(&quot;tel&quot;).value;</div><div class="line">    if(JTrim(Name) != &quot;&quot; &amp;&amp; JTrim(Sex) != &quot;&quot; &amp;&amp; JTrim(Num) != &quot;&quot; &amp;&amp; JTrim(Add) != &quot;&quot; &amp;&amp; JTrim(Tel) != &quot;&quot;) &#123;</div><div class="line">        contact.name = Name;</div><div class="line">        contact.sex = Sex;</div><div class="line">        contact.num = Num;</div><div class="line">        contact.add = Add;</div><div class="line">        contact.tel = Tel;</div><div class="line">        var str = JSON.stringify(contact);//对JSON对象进行处理，用于从一个对象解析出字符串</div><div class="line">        if(window.localStorage) &#123;</div><div class="line">            localStorage.setItem(contact.name,str);</div><div class="line">        &#125; else &#123;</div><div class="line">            alert(&quot;您暂时还无法使用本功能&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">    &#125; else &#123;</div><div class="line">        alert(&quot;请输入内容&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中用到了Trim()这个方法，用于判断输入是否为空</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function JTrim(s) &#123;</div><div class="line">    return s.replace(/(^\s*)|(\s*$)/g, &quot;&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>展示所有信息</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">function loadAll() &#123;</div><div class="line">    var resource = document.getElementById(&quot;list&quot;);</div><div class="line">    if(window.localStorage) &#123;</div><div class="line">        var result = &quot;&lt;table border = &apos;1&apos;&gt;&quot;;</div><div class="line">        result += &quot;&lt;tr&gt;&lt;td&gt;姓名&lt;/td&gt;&lt;td&gt;性别&lt;/td&gt;&lt;td&gt;学号&lt;/td&gt;&lt;td&gt;家庭住址&lt;/td&gt;&lt;td&gt;电话号码&lt;/td&gt;&lt;/tr&gt;&quot;;</div><div class="line">        for(var i = 0;i &lt; localStorage.length; i++) &#123;</div><div class="line">            var Name = localStorage.key(i);//用于得到索引的key，在这个程序里，key为name</div><div class="line">            var str = localStorage.getItem(Name);</div><div class="line">            var contact = JSON.parse(str);//对JSON对象进行处理，用于从一个字符串中解析出JSON对象</div><div class="line">            result += &quot;&lt;tr&gt;&lt;td&gt;&quot;+contact.name+&quot;&lt;/td&gt;&lt;td&gt;&quot;+contact.sex+&quot;&lt;/td&gt;&lt;td&gt;&quot;+contact.num+&quot;&lt;/td&gt;&lt;td&gt;&quot;+contact.add+&quot;&lt;/td&gt;&lt;td&gt;&quot;+contact.tel+&quot;&lt;/td&gt;&lt;/tr&gt;&quot;; </div><div class="line">        &#125;</div><div class="line">        result += &quot;&lt;/table&gt;&quot;;</div><div class="line">        resource.innerHTML = result;</div><div class="line">    &#125; else &#123;</div><div class="line">        alert(&quot;您暂时还无法使用本功能&quot;);</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>查询</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">function search() &#123;</div><div class="line">    var resource = document.getElementById(&quot;tato&quot;);</div><div class="line">    var search_name = document.getElementById(&quot;search_name&quot;).value;</div><div class="line">    if(window.localStorage) &#123;</div><div class="line">        var str = localStorage.getItem(search_name);</div><div class="line">        if(str != null) &#123;</div><div class="line">            var result = &quot;&lt;table border = &apos;1&apos;&gt;&quot;;</div><div class="line">            result += &quot;&lt;tr&gt;&lt;td&gt;姓名&lt;/td&gt;&lt;td&gt;性别&lt;/td&gt;&lt;td&gt;学号&lt;/td&gt;&lt;td&gt;家庭住址&lt;/td&gt;&lt;td&gt;电话号码&lt;/td&gt;&lt;/tr&gt;&quot;;</div><div class="line">            var contact = JSON.parse(str);</div><div class="line">            result += &quot;&lt;tr&gt;&lt;td&gt;&quot;+contact.name+&quot;&lt;/td&gt;&lt;td&gt;&quot;+contact.sex+&quot;&lt;/td&gt;&lt;td&gt;&quot;+contact.num+&quot;&lt;/td&gt;&lt;td&gt;&quot;+contact.add+&quot;&lt;/td&gt;&lt;td&gt;&quot;+contact.tel+&quot;&lt;/td&gt;&lt;/tr&gt;&quot;;</div><div class="line">            result += &quot;&lt;/table&gt;&quot;;</div><div class="line">            resource.innerHTML = result;            </div><div class="line">        &#125; else &#123;</div><div class="line">            alert(&quot;系统无此人&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125; else &#123;</div><div class="line">        alert(&quot;您暂时还无法使用本功能&quot;);</div><div class="line">        return;</div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>删除</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function del() &#123;</div><div class="line">    var del_name = document.getElementById(&quot;del_name&quot;).value;</div><div class="line">    if(window.localStorage) &#123;</div><div class="line">        var result = localStorage.getItem(del_name);</div><div class="line">        localStorage.removeItem(del_name);</div><div class="line">        if(result != null) &#123;</div><div class="line">            alert(&quot;删除成功&quot;);           </div><div class="line">        &#125; else &#123;</div><div class="line">            alert(&quot;系统无此人&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125; else &#123;</div><div class="line">        alert(&quot;您暂时还无法使用本功能&quot;);</div><div class="line">        return;        </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在这里如果想对<strong>所有数据</strong>做删除处理则只需将<code>localStorage.removeItem();</code>换成<code>localStorage.clear();</code>即可</p>
+<p><strong><em><a href="http://huangxizhou.oschina.io/test" target="_blank" rel="external">Demo地址</a></em></strong>–魔改了一下界面，开心就好=.=</p>
+<hr>
+<p>现在让我们在浏览器的开发者工具里面看一看Web Storage到底是怎么存储的<br><img src="http://thumbnail0.baidupcs.com/thumbnail/73cc88e1fd1abe7dc9e9169161be4217?fid=3745118495-250528-896126035055774&amp;time=1483858800&amp;rt=sh&amp;sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-hbSDlfZrB22sRu%2Bw1JfoOP%2BgbSU%3D&amp;expires=8h&amp;chkv=0&amp;chkbd=0&amp;chkpc=&amp;dp-logid=177590668991656325&amp;dp-callid=0&amp;size=c1920_u1080&amp;quality=90" alt="Web Storage"></p>
+<p>我们可以在chrome开发者工具里面找到Application这个选项，其中就有今天的主角：<code>Local Storage</code>和<code>Session Storage</code></p>
+<p>现在输入一些数据</p>
+<p><img src="http://thumbnail0.baidupcs.com/thumbnail/e86cb9fbe88d4e6bdfc289f9c3463043?fid=3745118495-250528-426374895855314&amp;time=1483858800&amp;rt=sh&amp;sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-Gs4441E2ZPQ6JaCzdyPcBXPn4Q4%3D&amp;expires=8h&amp;chkv=0&amp;chkbd=0&amp;chkpc=&amp;dp-logid=177614896619412575&amp;dp-callid=0&amp;size=c1920_u1080&amp;quality=90" alt="数据输入"></p>
+<p>点击提交之后我们立刻就能在Local Storage里面看到<strong>明文存储</strong>的数据（后面的value是以JSON对象来存储的，所以在对其进行操作的时候需要转换格式）</p>
+<p><img src="http://thumbnail0.baidupcs.com/thumbnail/063dfb6b0c685c0c61c47680a18ddc46?fid=3745118495-250528-486061342157962&amp;time=1483858800&amp;rt=sh&amp;sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-cmUSgnUhty9BI2BF%2FPoXowTWpvw%3D&amp;expires=8h&amp;chkv=0&amp;chkbd=0&amp;chkpc=&amp;dp-logid=177623302154363237&amp;dp-callid=0&amp;size=c1920_u1080&amp;quality=90" alt="localstorage数据"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>Web Storage固然简单实用，但是数据的明文存储实在是硬伤，所以各位使用之前请三思</p>
+
+	
+	
+	
+	
+</div>
+				
+				
+
+                <!-- Post Comments -->
+                
+                    
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+    <!-- Prev Nav -->
+    
+        <a href="/2017/01/03/indexedDB/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+</nav>
+        </div>
+    </div>
+
+				
+				
+					<!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay "></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored  sidebar-fixed-left" role="navigation">
+	<div id="sidebar-main">
+	    <!-- Sidebar Header -->
+		<div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Trevor's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        xizhouh@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+		<!-- Sidebar Navigation  -->
+		<ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+			
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+						<i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    <li id="sidebar-first-li">
+        <a href="/" target="_self">
+            <i class="material-icons sidebar-material-icons">home</i>
+             主页
+        </a>
+    </li>
+
+    <!-- I'm Feeling Lucky -->
+<!--
+    <li class="dropdown">
+        <a href="" target="_self">
+            <i class="material-icons sidebar-material-icons">explore</i>
+             sidebar.imlucky
+        </a>
+    </li>
+-->
+
+
+    <!-- Archives  -->
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">inbox</i>
+             归档
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">1</span></a>
+        </ul>
+    </li>
+
+    <!-- Categories  -->
+    
+
+    <!-- Divider -->
+    <li class="divider"></li>
+
+
+    <!-- Pages  -->
+	
+		<li>
+			<a href="/about" title="关于我">
+				关于我
+			</a>
+		</li>
+	
+
+    <!-- Article Numebr  -->
+    <li>
+        <a href="/archives">
+             文章总数
+             <span class="sidebar-badge">2</span>
+        </a>
+    </li>
+</ul>
+
+
+		<!-- Sidebar Divider -->
+		<div class="sidebar-divider"></div>
+
+		<!-- Sidebar Footer -->
+		<!-- 
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :) 
+-->
+
+<!-- Theme Material -->
+<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+	<div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		主题 - Material
+		<span class="sidebar-badge badge-circle">i</span>
+	</div>
+</a>
+
+<!-- Help & Support -->
+<!--
+<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		sidebar.help
+		<span class="mdl-button__ripple-container">
+			<span class="mdl-ripple"></span>
+		</span>
+	</div>
+</a>
+-->
+
+<!-- Feedback -->
+<!--
+<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.feedback
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>
+-->
+
+<!-- Abount Theme -->
+<!--
+<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.about_theme
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>-->
+
+	</div>
+    
+    <!-- Sidebar Sponsor -->
+    
+
+
+</aside>
+
+				
+				
+				
+					<!-- Footer Top Button -->
+					<div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+				
+				
+				<!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+	
+	
+		<!-- Paradox Footer Left Section -->
+		<div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+    <a href="https://twitter.com/twitter" target="_blank"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.png);">
+        <span class="visuallyhidden">Twitter</span>
+    </button></a>
+    
+
+    <!-- Facebook -->
+    
+    <a href="https://www.facebook.com/facebook" target="_blank"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-facebook.png);">
+        <span class="visuallyhidden">Facebook</span>
+    </button></a>
+    
+
+    <!-- Google + -->
+    
+    <a href="https://www.google.com/" target="_blank"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.png);">
+        <span class="visuallyhidden">Google Plus</span>
+    </button></a>
+    
+
+    <!-- Weibo -->
+    
+    
+
+    <!-- Instagram -->
+    
+    
+
+    <!-- Tumblr -->
+    
+    
+
+    <!-- Github -->
+    
+    
+
+    <!-- LinkedIn -->
+    
+    
+
+    <!-- Zhihu -->
+    
+    
+</div>
+
+
+		<!--Copyright-->
+		<div id="copyright">Copyright&nbsp;©&nbsp;<script type="text/javascript">var fd = new Date();document.write(fd.getFullYear());</script>&nbsp;Hexo</div>
+
+		<!-- Paradox Footer Right Section -->
+
+		<!-- 
+		I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+		It will not impact the appearance and can give developers a lot of support :)
+
+		很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+		它不会影响美观并可以给开发者很大的支持。 :) 
+		-->
+
+		<div class="mdl-mini-footer--right-section">
+			<div>
+				<div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+				<div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+			</div>
+		</div>
+	
+    
+</footer>
+                
+				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
+<script src="/js/js.min.js"></script>
+<script src="/js/nprogress.js"></script>
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    
+    $('#nprogress .bar').css({
+        'background': '#FF4081'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #FF4081, 0 0 15px #FF4081'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#FF4081',
+        'border-left-color': '#FF4081'
+    });
+    
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Swiftye -->
+
+
+<!-- Local Search-->
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
+    });
+</script>
+
+<!-- MathJax Load-->
+
+            </main>
+        </div>
+		
+    </body>
+		
+	
+</html>
